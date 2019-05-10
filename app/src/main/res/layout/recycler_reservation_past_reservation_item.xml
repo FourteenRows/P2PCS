@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey">
+
+    <androidx.cardview.widget.CardView
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            app:cardElevation="2dp">
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ridp"
+                        android:textSize="0sp"
+                        tools:visibility="gone"/>
+
+                <TextView
+                        android:text="@string/vehicle"
+                        style="@style/textView"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"/>
+
+                <TextView
+                        android:id="@+id/vehicleModel"
+                        style="@style/textView"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:text="@string/date"
+                        style="@style/textView"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:textSize="18sp"/>
+
+                <TextView
+                        android:id="@+id/endDate"
+                        style="@style/textView"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:textSize="18sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:text="@string/time_zone"
+                        style="@style/textView"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="4dp"
+                        android:textSize="18sp"/>
+
+                <TextView
+                        android:id="@+id/hours"
+                        style="@style/textView"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="4dp"
+                        android:textSize="18sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:text="@string/total_cost"
+                        style="@style/textView"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="4dp"
+                        android:textSize="18sp"/>
+
+                <TextView
+                        android:id="@+id/totalCost"
+                        style="@style/textView"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="4dp"
+                        android:textSize="18sp"/>
+
+                <TextView
+                        android:text="@string/euro"
+                        style="@style/textView"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="4dp"
+                        android:textSize="18sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

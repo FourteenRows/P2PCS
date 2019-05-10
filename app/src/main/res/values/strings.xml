@@ -1,0 +1,76 @@
+<resources>
+    <string name="all_fields_required">Compila tutti i campi</string>
+    <string name="already_registered">Hai già un account? Accedi!</string>
+    <string name="cancel">Annulla</string>
+    <string name="confirm">Conferma</string>
+    <string name="confirm_password">Conferma Password</string>
+    <string name="confirmation_reservation">Sei sicuro di voler eliminare questa prenotazione?</string>
+    <string name="confirmation_vehicle">Sei sicuro di voler eliminare quest\'auto?</string>
+    <string name="date">Data:\t</string>
+    <string name="editPwd">Modifica la password</string>
+    <string name="email">Email</string>
+    <string name="email_not_email">L\'email inserita non rappresenta una email</string>
+    <string name="email_already_in">Email già presente nel sistema</string>
+    <string name="error">Errore</string>
+    <string name="euro">€</string>
+    <string name="field_required">Compila il campo</string>
+    <string name="forgot_password">Hai dimenticato la password?</string>
+    <string name="future_reservations">Prenotazioni attive</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="login">Login</string>
+    <string name="missing_reservations">Non hai prenotazioni attive</string>
+    <string name="name">Nome</string>
+    <string name="no_account">Non hai un account? Registrati!</string>
+    <string name="no_vehicles">Nessuna auto presente</string>
+    <string name="no_vehicles_available">Nessuna auto disponibile</string>
+    <string name="not_verified">"Account non verificato, controlla la tua casella email"</string>
+    <string name="number_of_seats">La tua auto deve avere almeno un posto</string>
+    <string name="ok">OK</string>
+    <string name="ongoing_reservation">Non puoi eliminare questa prenotazione in quanto in corso</string>
+    <string name="password">Password</string>
+    <string name="password_change">Controlla la tua casella email per procedere con il cambio della password</string>
+    <string name="password_length">La password deve essere di almeno 6 caratteri</string>
+    <string name="passwords_not_matching">Le password non combaciano</string>
+    <string name="password_reset">Reset Password</string>
+    <string name="past_reservations">Prenotazioni passate</string>
+    <string name="plate">Targa:\t</string>
+    <string name="plate_already_in">Targa già presente nel sistema</string>
+    <string name="plate_not_plate">La targa inserita non rappresenta una targa</string>
+    <string name="register">Registrati</string>
+    <string name="registration_successful">Registrazione avvenuta correttamente! Controlla la tua casella email per
+        continuare
+    </string>
+    <string name="reset">Reset</string>
+    <string name="reset_email_sent">Email di reset inviata</string>
+    <string name="reservation_confirm">Inserisci prenotazione</string>
+    <string name="reservation_date">Data</string>
+    <string name="reservation_fill">Inserisci la data e la fascia della prenotazione prima di poter selezionare un
+        veicolo
+    </string>
+    <string name="reservation_successful">Prenotazione inserita correttamente</string>
+    <string name="reservation_vehicle">Auto</string>
+    <string name="reservation_zone">Fascia</string>
+    <string name="seats">Numero di posti:\t</string>
+    <string name="success">Evviva!</string>
+    <string name="surname">Cognome</string>
+    <string name="time_zone">Fascia:\t</string>
+    <string name="total_cost">Costo totale:\t</string>
+    <string name="vehicle">Auto:\t</string>
+    <string name="vehicle_available">Prenotabile</string>
+    <string name="vehicle_confirm">Inserisci auto</string>
+    <string name="vehicle_date">Data fine disponibilità</string>
+    <string name="vehicle_delete">Elimina auto</string>
+    <string name="vehicle_delete_error_db">Si è verificato un errore nel tentativo di eliminare l\'auto</string>
+    <string name="vehicle_delete_error_reservations">Non puoi eliminare l\'auto in quanto presenta prenotazioni attive
+    </string>
+    <string name="vehicle_delete_success">Auto eliminata correttamente</string>
+    <string name="vehicle_edit">Modifica auto</string>
+    <string name="vehicle_edit_success">Auto modificata con successo</string>
+    <string name="vehicle_insert">Auto inserita con successo</string>
+    <string name="vehicle_instant">Disponilità attuale</string>
+    <string name="vehicle_model">Modello</string>
+    <string name="vehicle_plate">Targa</string>
+    <string name="vehicle_seats">Numero posti</string>
+    <string name="vehicle_unavailable">Non prenotabile</string>
+    <string name="wrong_credentials">Credenziali errate</string>
+</resources>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary">
+
+    <EditText
+            android:id="@+id/loginEmail"
+            android:inputType="textEmailAddress"
+            android:hint="@string/email"
+            style="@style/textField"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="152dp"
+            android:importantForAutofill="no"/>
+
+    <EditText
+            android:id="@+id/loginPassword"
+            android:inputType="textPassword"
+            android:hint="@string/password"
+            style="@style/textField"
+            app:layout_constraintTop_toBottomOf="@+id/loginEmail"
+            app:layout_constraintStart_toStartOf="@+id/loginEmail"
+            app:layout_constraintEnd_toEndOf="@+id/loginEmail"
+            android:layout_marginTop="8dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            android:importantForAutofill="no"/>
+    <Button
+            android:id="@+id/loginButton"
+            android:text="@string/login"
+            style="@style/button"
+            app:layout_constraintStart_toStartOf="@+id/loginPassword"
+            app:layout_constraintEnd_toEndOf="@+id/loginPassword"
+            app:layout_constraintTop_toBottomOf="@+id/loginPassword" android:layout_marginTop="8dp"
+            app:layout_constraintHorizontal_bias="0.0"/>
+    <TextView
+            android:id="@+id/notRegistered"
+            android:text="@string/no_account"
+            style="@style/textView"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/loginButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.328"/>
+    <TextView
+            android:id="@+id/forgot"
+            android:text="@string/forgot_password"
+            style="@style/textView"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/notRegistered"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.17"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

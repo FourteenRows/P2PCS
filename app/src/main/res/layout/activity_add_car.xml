@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_reservation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start"
+        android:background="@color/grey">
+
+    <com.mikepenz.materialize.view.ScrimInsetsRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+
+            <include
+                    android:id="@+id/appBar"
+                    layout="@layout/app_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            <EditText
+                    android:id="@+id/vehiclePlate"
+                    android:inputType="text"
+                    android:maxLength="7"
+                    android:hint="@string/vehicle_plate"
+                    style="@style/textField"
+                    app:layout_constraintTop_toBottomOf="@+id/appBar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="100dp"/>
+
+            <EditText
+                    android:id="@+id/vehicleModel"
+                    android:inputType="text"
+                    android:maxLength="20"
+                    android:hint="@string/vehicle_model"
+                    style="@style/textField"
+                    app:layout_constraintTop_toBottomOf="@+id/vehiclePlate"
+                    app:layout_constraintStart_toStartOf="@+id/vehiclePlate"
+                    app:layout_constraintEnd_toEndOf="@+id/vehiclePlate"/>
+
+            <EditText
+                    android:id="@+id/vehicleSeats"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:hint="@string/vehicle_seats"
+                    style="@style/textField"
+                    app:layout_constraintTop_toBottomOf="@+id/vehicleModel"
+                    app:layout_constraintStart_toStartOf="@+id/vehicleModel"
+                    app:layout_constraintEnd_toEndOf="@+id/vehicleModel"/>
+
+            <EditText
+                    android:id="@+id/vehicleDate"
+                    android:hint="@string/vehicle_date"
+                    style="@style/textField"
+                    android:focusableInTouchMode="false"
+                    app:layout_constraintTop_toBottomOf="@+id/vehicleSeats"
+                    app:layout_constraintStart_toStartOf="@+id/vehicleSeats"
+                    app:layout_constraintEnd_toEndOf="@+id/vehicleSeats"/>
+
+            <TextView
+                    android:id="@+id/vehicleMillis"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:visibility="invisible"
+                    app:layout_constraintTop_toBottomOf="@+id/vehicleDate"
+                    app:layout_constraintStart_toStartOf="@+id/vehicleDate"
+                    app:layout_constraintEnd_toEndOf="@+id/vehicleDate"/>
+
+            <ImageButton
+                    android:id="@+id/clearEndDate"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/icon_clear"
+                    android:background="@drawable/icon_clear"
+                    app:layout_constraintStart_toEndOf="@+id/vehicleDate"
+                    app:layout_constraintTop_toTopOf="@+id/vehicleDate"
+                    app:layout_constraintBottom_toBottomOf="@+id/vehicleDate"/>
+
+            <Button
+                    android:id="@+id/vehicleConfirm"
+                    android:text="@string/vehicle_confirm"
+                    style="@style/button"
+                    android:layout_marginTop="84dp"
+                    app:layout_constraintTop_toBottomOf="@+id/vehicleDate"
+                    app:layout_constraintStart_toStartOf="@+id/vehicleDate"
+                    app:layout_constraintEnd_toEndOf="@+id/vehicleDate"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.mikepenz.materialize.view.ScrimInsetsRelativeLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

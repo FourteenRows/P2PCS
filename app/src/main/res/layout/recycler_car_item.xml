@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent">
+
+    <androidx.cardview.widget.CardView
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            app:cardElevation="2dp">
+
+        <LinearLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:baselineAligned="true">
+
+            <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="0.9">
+
+                <TextView
+                        android:id="@+id/uid"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        tools:visibility="gone"/>
+
+                <TextView
+                        android:id="@+id/vehicleModel"
+                        style="@style/textView"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"/>
+
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    <TextView
+                            android:text="@string/plate"
+                            style="@style/textView"
+                            android:textColor="@color/black"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:textSize="18sp"/>
+
+                    <TextView
+                            android:id="@+id/plate"
+                            style="@style/textView"
+                            android:textColor="@color/black"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:textSize="18sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                    <TextView
+                            android:text="@string/seats"
+                            style="@style/textView"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="4dp"
+                            android:textSize="18sp"/>
+
+                    <TextView
+                            android:id="@+id/seats"
+                            style="@style/textView"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="4dp"
+                            android:textSize="18sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    <TextView
+                            android:id="@+id/instant"
+                            style="@style/textView"
+                            android:layout_marginBottom="4dp"
+                            android:textSize="18sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    <TextView
+                            android:id="@+id/vehicleAvailability"
+                            style="@style/textView"
+                            android:layout_marginBottom="4dp"
+                            android:textColor="@color/red"
+                            android:textSize="18sp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="139dp"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_weight="0.1"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+
+                <ImageButton
+                        android:id="@+id/editVehicle"
+                        android:src="@drawable/icon_edit"
+                        android:background="@drawable/icon_edit"
+                        android:minWidth="40dp"
+                        android:maxWidth="40dp"
+                        android:minHeight="40dp"
+                        android:maxHeight="40dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"/>
+
+                <ImageButton
+                        android:id="@+id/deleteVehicle"
+                        android:src="@drawable/icon_bin"
+                        android:background="@drawable/icon_bin"
+                        android:minWidth="40dp"
+                        android:maxWidth="40dp"
+                        android:minHeight="40dp"
+                        android:maxHeight="40dp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.fourteenrows.p2pcs">
+
+    <application
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="P2PCS"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme"
+            tools:ignore="GoogleAppIndexingWarning">
+
+        <activity
+                android:name=".activities.reservation.add_reservation.add_reservation_vehicle.AddReservationVehicleView"/>
+
+        <activity
+                android:name=".activities.reservation.ReservationView"
+                android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activities.reservation.add_reservation.AddReservationView"/>
+
+        <activity android:name=".activities.authentication.login.LoginView"/>
+
+        <activity android:name=".activities.avatar.AvatarView"/>
+
+        <activity android:name=".activities.booster.BoosterView"/>
+
+        <activity android:name=".activities.car.CarView"/>
+
+        <activity android:name=".activities.car.add_car.AddCarView"/>
+
+        <activity android:name=".activities.car.edit_car.EditCarView"/>
+
+        <activity android:name=".activities.leaderboard.LeaderboardView"/>
+
+        <activity android:name=".activities.profile.ProfileView"/>
+
+        <activity android:name=".activities.authentication.registration.RegistrationView"/>
+
+        <activity android:name=".activities.quest.QuestView"/>
+
+        <activity android:name=".activities.shop.ShopView"/>
+
+        <activity android:name=".activities.trip.TripView"/>
+
+    </application>
+
+</manifest>
