@@ -35,6 +35,9 @@ android:
   - android-sdk-license-.+
   - google-gdk-license-.+
 before_install:
+- openssl aes-256-cbc -K $encrypted_6e850d6c3f0f_key -iv $encrypted_6e850d6c3f0f_iv
+  -in p2pcs-acc00-firebase-adminsdk-x0ylp-5518659e3c.json.enc -out p2pcs-acc00-firebase-adminsdk-x0ylp-5518659e3c.json
+  -d
 - yes | sdkmanager "platforms;android-28"
 - mkdir "$ANDROID_HOME/licenses" || true
 - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
@@ -42,7 +45,9 @@ before_install:
 - chmod +x gradlew
 - "./gradlew dependencies || true"
 before_script:
-- openssl aes-256-cbc -K $encrypted_dc8007b26b62_key -iv $encrypted_dc8007b26b62_iv -in p2pcs-acc00-firebase-adminsdk-x0ylp-5518659e3c.json.enc -out p2pcs-acc00-firebase-adminsdk-x0ylp-5518659e3c.json -d
+- openssl aes-256-cbc -K $encrypted_dc8007b26b62_key -iv $encrypted_dc8007b26b62_iv
+  -in p2pcs-acc00-firebase-adminsdk-x0ylp-5518659e3c.json.enc -out p2pcs-acc00-firebase-adminsdk-x0ylp-5518659e3c.json
+  -d
 - echo "y" | android update sdk -a --no-ui --filter sys-img-armeabi-v7a-android-21,sys-img-x86_64-android-21
 - gcloud version || true
 - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; curl
