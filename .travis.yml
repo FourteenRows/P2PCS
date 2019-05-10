@@ -45,9 +45,6 @@ before_install:
 - chmod +x gradlew
 - "./gradlew dependencies || true"
 before_script:
-- openssl aes-256-cbc -K $encrypted_dc8007b26b62_key -iv $encrypted_dc8007b26b62_iv
-  -in p2pcs-acc00-firebase-adminsdk-x0ylp-5518659e3c.json.enc -out p2pcs-acc00-firebase-adminsdk-x0ylp-5518659e3c.json
-  -d
 - echo "y" | android update sdk -a --no-ui --filter sys-img-armeabi-v7a-android-21,sys-img-x86_64-android-21
 - gcloud version || true
 - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; curl
