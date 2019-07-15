@@ -1,63 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/grey">
+        android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
+            android:id="@+id/background"
             android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_margin="5dp"
-            app:cardElevation="2dp">
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/background_blue">
 
-        <LinearLayout
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/delete_icon"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/icon_archive"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/delete_icon"
+                android:text="@string/reservation_archive"
+                android:textColor="#fff"
+                android:textSize="15sp"/>
 
-            <LinearLayout
-                    android:layout_height="wrap_content"
+    </RelativeLayout>
+
+
+    <RelativeLayout
+            android:background="@drawable/border_grey"
+            android:id="@+id/foreground"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="150dp"
+                    android:layout_height="80dp"
+                    android:id="@+id/imageCarPast"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"/>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/ridp"
                         android:textSize="0sp"
                         tools:visibility="gone"/>
 
-                <TextView
-                        android:text="@string/vehicle"
-                        style="@style/textView"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"/>
-
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/vehicleModel"
                         style="@style/textView"
                         android:textColor="@color/black"
                         android:textSize="18sp"/>
 
-            </LinearLayout>
-
-            <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                <TextView
-                        android:text="@string/date"
-                        style="@style/textView"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:textSize="18sp"/>
-
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/endDate"
                         style="@style/textView"
                         android:textColor="@color/black"
@@ -65,59 +79,26 @@
                         android:layout_marginBottom="4dp"
                         android:textSize="18sp"/>
 
-            </LinearLayout>
-
-            <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                <TextView
-                        android:text="@string/time_zone"
-                        style="@style/textView"
-                        android:textColor="@color/black"
-                        android:layout_marginBottom="4dp"
-                        android:textSize="18sp"/>
-
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/hours"
                         style="@style/textView"
                         android:textColor="@color/black"
                         android:layout_marginBottom="4dp"
                         android:textSize="18sp"/>
 
-            </LinearLayout>
-
-            <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/totalCost"
                         android:text="@string/total_cost"
                         style="@style/textView"
                         android:textColor="@color/black"
-                        android:layout_marginBottom="4dp"
                         android:textSize="18sp"/>
 
-                <TextView
-                        android:id="@+id/totalCost"
-                        style="@style/textView"
-                        android:textColor="@color/black"
-                        android:layout_marginBottom="4dp"
-                        android:textSize="18sp"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-                <TextView
-                        android:text="@string/euro"
-                        style="@style/textView"
-                        android:textColor="@color/black"
-                        android:layout_marginBottom="4dp"
-                        android:textSize="18sp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-            </LinearLayout>
+    </RelativeLayout>
 
-        </LinearLayout>
+</FrameLayout>
 
-    </androidx.cardview.widget.CardView>
 
-</LinearLayout>

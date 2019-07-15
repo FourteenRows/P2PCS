@@ -1,11 +1,15 @@
 package com.fourteenrows.p2pcs
 
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.FailureHandler
+import androidx.test.espresso.UiController
+import androidx.test.espresso.ViewAction
 import androidx.test.espresso.ViewAssertion
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers.*
 import org.hamcrest.Matcher
@@ -14,8 +18,19 @@ import java.lang.Thread.sleep
 
 open class UITest {
 
-    /*var a : Activity = Activity()
-    var lol: String = a.getString(R.id.changePassword)*/
+    val name: String = "test"
+    val surname: String = "test"
+    val email: String = "test@test.com"
+    val password: String = "password"
+    val defaultEmail: String = "fourteenrows@gmail.com"
+    val defaultEmailPassword: String = "testacc"
+    val notVerifiedEmail: String = "fego@topmailer.info"
+    val notVerifiedEmailPassword: String = "qwerty"
+    val wrongPassword: String = "wrong"
+    val reset: String = "RESET"
+    val notVaildEmail: String = "not vaild mail"
+    val confirm: String = "CONFERMA"
+
 
     private class FindViewFailureHandler : FailureHandler {
         override fun handle(error: Throwable, viewMatcher: Matcher<View>) {
@@ -24,6 +39,23 @@ open class UITest {
 
         internal inner class NoMatchingViewException : RuntimeException()
     }
+
+    data class clickChildViewWithId(var id: Int) : ViewAction {
+
+        override fun getDescription(): String {
+            return "Click on a child view with specified id."
+        }
+
+        override fun getConstraints(): Matcher<View>? {
+            return null
+        }
+
+        override fun perform(uiController: UiController, view: View) {
+            val v = view.findViewById<View>(id)
+            v.performClick()
+        }
+    }
+
 
     private fun checkView(viewMatcher: Matcher<View>, viewAssertion: ViewAssertion): Boolean {
         try {
@@ -53,7 +85,7 @@ open class UITest {
     protected fun generateEmail(): String {
         val charPool: List<Char> = ('a'..'z') + ('0'..'9')
         val randomString = (1..6)
-            .map { i -> kotlin.random.Random.nextInt(0, charPool.size) }
+            .map { kotlin.random.Random.nextInt(0, charPool.size) }
             .map(charPool::get)
             .joinToString("")
 
@@ -125,4 +157,17 @@ open class UITest {
             .perform((click()))
         writeEditTextAndGetDialogWithString(boxesId, buttonString, dialogString, sleep)
     }
+
+    protected fun clickItemInRecycleView(position: Int, id: Int) {
+        wait(2)
+        onView(withId(R.id.recycleView))
+            .perform(
+                RecyclerViewActions
+                    .actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                        position,
+                        clickChildViewWithId(id)
+                    )
+            )
+    }
+
 }

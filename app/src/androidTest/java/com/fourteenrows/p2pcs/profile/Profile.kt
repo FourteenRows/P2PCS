@@ -1,24 +1,32 @@
-package com.fourteenrows.p2pcs.profile
+package com.fourteenrows.p2pcs.Profile
 
-import androidx.test.espresso.Espresso
-import androidx.test.espresso.action.ViewActions
-import androidx.test.espresso.assertion.ViewAssertions
-import androidx.test.espresso.matcher.RootMatchers
-import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.fourteenrows.p2pcs.R
 import com.fourteenrows.p2pcs.UITest
-import com.fourteenrows.p2pcs.activities.profile.ProfileView
+import com.fourteenrows.p2pcs.activities.profile.ProfileActivity
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.lang.Thread.sleep
 
 @RunWith(AndroidJUnit4::class)
 class Profile : UITest() {
+
     @get:Rule
-    var activityRule: ProfileRule<ProfileView> =
-        ProfileRule(ProfileView::class.java)
+    var activityRule: ProfileRule =
+        ProfileRule(ProfileActivity::class.java)
+
+    private lateinit var ok: String
+    private lateinit var fieldRequired: String
+    private lateinit var registrationSuccessful: String
+    private lateinit var passwordChange: String
+
+    @Before
+    fun initStrings() {
+        ok = activityRule.activity.baseContext.resources.getString(R.string.ok)
+        fieldRequired = activityRule.activity.baseContext.resources.getString(R.string.field_required)
+        passwordChange = activityRule.activity.baseContext.resources.getString(R.string.password_change)
+    }
 
     @Test
     fun emptyName() {
@@ -26,11 +34,10 @@ class Profile : UITest() {
 
         map.put(R.id.alertTextField, "")
 
-        writeEditTextInAlertAndGetDialog(
-            map,
-            R.id.profileName,
-            "CONFERMA",
-            "Compila il campo"
+        writeEditTextInAlertAndGetDialog(map,
+            R.id.btnImmatricolazione,
+            confirm,
+            fieldRequired
         )
     }
 
@@ -40,21 +47,24 @@ class Profile : UITest() {
 
         map.put(R.id.alertTextField, "")
 
-        writeEditTextInAlertAndGetDialog(
-            map,
-            R.id.profileSurname,
-            "CONFERMA",
-            "Compila il campo"
+        writeEditTextInAlertAndGetDialog(map,
+            R.id.btnTarga,
+            confirm,
+            fieldRequired
         )
     }
 
+    /*
     @Test
     fun sendEmailPassword() {
         sleep(1000)
         Espresso.onView(ViewMatchers.withId(R.id.changePassword))
             .perform((ViewActions.click()))
-        Espresso.onView(ViewMatchers.withText("Controlla la tua casella email per procedere con il cambio della password"))
+        Espresso.onView(ViewMatchers.withText(passwordChange))
             .inRoot(RootMatchers.isDialog())
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        Espresso.onView(ViewMatchers.withText(ok))
+            .perform((ViewActions.click()))
     }
+    */
 }

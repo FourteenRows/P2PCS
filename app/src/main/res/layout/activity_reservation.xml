@@ -8,13 +8,13 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         tools:openDrawer="start"
-        android:background="@color/grey">
+        android:background="@color/slightlyWhite">
 
     <com.mikepenz.materialize.view.ScrimInsetsRelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:orientation="vertical">
@@ -23,15 +23,16 @@
                     layout="@layout/app_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/appBar"/>
+                    android:id="@+id/appBar"
+                    android:background="@android:drawable/screen_background_light_transparent"/>
 
             <androidx.recyclerview.widget.RecyclerView
                     app:layout_constraintTop_toBottomOf="@id/appBar"
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:id="@+id/recycleView"/>
+                    android:id="@+id/recycleView" android:layout_marginTop="50dp"/>
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/addReservation"

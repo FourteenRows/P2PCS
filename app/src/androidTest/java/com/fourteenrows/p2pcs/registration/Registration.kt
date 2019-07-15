@@ -1,75 +1,93 @@
-package com.fourteenrows.p2pcs.registration
+package com.fourteenrows.p2pcs.Registration
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.fourteenrows.p2pcs.R
 import com.fourteenrows.p2pcs.UITest
-import com.fourteenrows.p2pcs.activities.authentication.registration.RegistrationView
+import com.fourteenrows.p2pcs.activities.authentication.registration.RegistrationActivity
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class Registration : UITest() {
-    @get:Rule
-    var activityRule: RegistartionRule<RegistrationView> = RegistartionRule(RegistrationView::class.java)
 
-    private fun emptyExept(itemToRemove: Int) {
+    @get:Rule
+    var activityRule: RegistrationRule =
+        RegistrationRule(RegistrationActivity::class.java)
+
+    private lateinit var allFieldsRequired: String
+    private lateinit var passwordLength: String
+    private lateinit var emailAlreadyIn: String
+    private lateinit var emailNotEmail: String
+    private lateinit var passwordsNotMatching: String
+    private lateinit var registrationSuccessful: String
+
+    @Before
+    fun initStrings() {
+        allFieldsRequired = activityRule.activity.baseContext.resources.getString(R.string.all_fields_required)
+        passwordLength = activityRule.activity.baseContext.resources.getString(R.string.password_length)
+        emailAlreadyIn = activityRule.activity.baseContext.resources.getString(R.string.email_already_in)
+        emailNotEmail = activityRule.activity.baseContext.resources.getString(R.string.email_not_email)
+        passwordsNotMatching = activityRule.activity.baseContext.resources.getString(R.string.passwords_not_matching)
+        registrationSuccessful = activityRule.activity.baseContext.resources.getString(R.string.registration_successful)
+    }
+
+    private fun emptyExcept(itemToRemove: Int) {
         val map: MutableMap<Int, String> = mutableMapOf()
 
-        map.put(R.id.registrationName, "test")
-        map.put(R.id.registrationSurname, "test")
-        map.put(R.id.registrationEmail, "test@test.com")
-        map.put(R.id.registrationPassword1, "password")
-        map.put(R.id.registrationPassword2, "password")
+        map.put(R.id.registrationName, name)
+        map.put(R.id.registrationSurname, surname)
+        map.put(R.id.registrationEmail, email)
+        map.put(R.id.registrationPassword1, password)
+        map.put(R.id.registrationPassword2, password)
 
         map.remove(itemToRemove)
 
-        writeEditTextAndGetDialogWithId(
-            map,
+        writeEditTextAndGetDialogWithId(map,
             R.id.registrationButton,
-            "Compila tutti i campi"
+            allFieldsRequired
         )
     }
 
     @Test
     fun emptyName() {
-        emptyExept(R.id.registrationName)
+        emptyExcept(R.id.registrationName)
     }
 
     @Test
     fun emptySurname() {
-        emptyExept(R.id.registrationSurname)
+        emptyExcept(R.id.registrationSurname)
     }
 
     @Test
     fun emptyEmail() {
-        emptyExept(R.id.registrationEmail)
+        emptyExcept(R.id.registrationEmail)
     }
 
     @Test
     fun emptyPassword1() {
-        emptyExept(R.id.registrationPassword1)
+        emptyExcept(R.id.registrationPassword1)
     }
 
     @Test
     fun emptyPassword2() {
-        emptyExept(R.id.registrationPassword2)
+        emptyExcept(R.id.registrationPassword2)
     }
 
     @Test
     fun passwordLength() {
         val map: MutableMap<Int, String> = mutableMapOf()
 
-        map.put(R.id.registrationName, "test")
-        map.put(R.id.registrationSurname, "test")
-        map.put(R.id.registrationEmail, "test@test.com")
+        map.put(R.id.registrationName, name)
+        map.put(R.id.registrationSurname, surname)
+        map.put(R.id.registrationEmail, email)
         map.put(R.id.registrationPassword1, "passw")
         map.put(R.id.registrationPassword2, "passw")
 
-        writeEditTextAndGetDialogWithId(
-            map,
+        writeEditTextAndGetDialogWithId(map,
             R.id.registrationButton,
-            "La password deve essere di almeno 6 caratteri"
+            passwordLength
         )
     }
 
@@ -77,16 +95,15 @@ class Registration : UITest() {
     fun emailAlreadyPresent() {
         val map: MutableMap<Int, String> = mutableMapOf()
 
-        map.put(R.id.registrationName, "test")
-        map.put(R.id.registrationSurname, "test")
-        map.put(R.id.registrationEmail, "fourteenrows@gmail.com")
-        map.put(R.id.registrationPassword1, "password")
-        map.put(R.id.registrationPassword2, "password")
+        map.put(R.id.registrationName, name)
+        map.put(R.id.registrationSurname, surname)
+        map.put(R.id.registrationEmail, defaultEmail)
+        map.put(R.id.registrationPassword1, password)
+        map.put(R.id.registrationPassword2, password)
 
-        writeEditTextAndGetDialogWithId(
-            map,
+        writeEditTextAndGetDialogWithId(map,
             R.id.registrationButton,
-            "Email già presente nel sistema"
+            emailAlreadyIn
         )
     }
 
@@ -94,16 +111,15 @@ class Registration : UITest() {
     fun invalidEmail() {
         val map: MutableMap<Int, String> = mutableMapOf()
 
-        map.put(R.id.registrationName, "test")
-        map.put(R.id.registrationSurname, "test")
-        map.put(R.id.registrationEmail, "test")
-        map.put(R.id.registrationPassword1, "password")
-        map.put(R.id.registrationPassword2, "password")
+        map.put(R.id.registrationName, name)
+        map.put(R.id.registrationSurname, surname)
+        map.put(R.id.registrationEmail, notVaildEmail)
+        map.put(R.id.registrationPassword1, password)
+        map.put(R.id.registrationPassword2, password)
 
-        writeEditTextAndGetDialogWithId(
-            map,
+        writeEditTextAndGetDialogWithId(map,
             R.id.registrationButton,
-            "L'email inserita non rappresenta una email"
+            emailNotEmail
         )
     }
 
@@ -111,34 +127,35 @@ class Registration : UITest() {
     fun differentPasswords() {
         val map: MutableMap<Int, String> = mutableMapOf()
 
-        map.put(R.id.registrationName, "test")
-        map.put(R.id.registrationSurname, "test")
-        map.put(R.id.registrationEmail, "test@test.com")
-        map.put(R.id.registrationPassword1, "passworq")
-        map.put(R.id.registrationPassword2, "password")
+        map.put(R.id.registrationName, name)
+        map.put(R.id.registrationSurname, name)
+        map.put(R.id.registrationEmail, email)
+        map.put(R.id.registrationPassword1, password)
+        map.put(R.id.registrationPassword2, password + "123")
 
-        writeEditTextAndGetDialogWithId(
-            map,
+        writeEditTextAndGetDialogWithId(map,
             R.id.registrationButton,
-            "Le password non combaciano"
+            passwordsNotMatching
         )
     }
 
+    /*
     @Test
     fun vaildRegistration() {
-        val email = generateEmail()
+        val randEmail = generateEmail()
         val map: MutableMap<Int, String> = mutableMapOf()
 
-        map.put(R.id.registrationName, "test")
-        map.put(R.id.registrationSurname, "test")
-        map.put(R.id.registrationEmail, email)
-        map.put(R.id.registrationPassword1, "password")
-        map.put(R.id.registrationPassword2, "password")
+        map.put(R.id.registrationName, name)
+        map.put(R.id.registrationSurname, surname)
+        map.put(R.id.registrationEmail, randEmail)
+        map.put(R.id.registrationPassword1, password)
+        map.put(R.id.registrationPassword2, password)
 
         writeEditTextAndGetDialogWithId(
             map,
             R.id.registrationButton,
-            "Registrazione avvenuta correttamente! Controlla la tua casella email per continuare"
+            registrationSuccessful
         )
     }
+    */
 }

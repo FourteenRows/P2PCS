@@ -1,6 +1,6 @@
 package com.fourteenrows.p2pcs.unitTests
 
-import com.fourteenrows.p2pcs.model.ModelValidator
+import com.fourteenrows.p2pcs.model.utility.ModelValidator
 import junit.framework.Assert.assertEquals
 import org.junit.Test
 
@@ -15,16 +15,16 @@ class Validator {
 
     @Test
     fun checkValueIsEmail() {
-        assertEquals(ModelValidator.checkValueIsEmail("asd@asd.asd"), true)
-        assertEquals(ModelValidator.checkValueIsEmail("asd@asd."), false)
-        assertEquals(ModelValidator.checkValueIsEmail("asd@asd"), false)
-        assertEquals(ModelValidator.checkValueIsEmail("asd@.sd"), false)
-        assertEquals(ModelValidator.checkValueIsEmail("asd@"), false)
-        assertEquals(ModelValidator.checkValueIsEmail("@asd.asd"), false)
+        assertEquals(ModelValidator.checkValueIsEmail("action@action.action"), true)
+        assertEquals(ModelValidator.checkValueIsEmail("action@action."), false)
+        assertEquals(ModelValidator.checkValueIsEmail("action@action"), false)
+        assertEquals(ModelValidator.checkValueIsEmail("action@.sd"), false)
+        assertEquals(ModelValidator.checkValueIsEmail("action@"), false)
+        assertEquals(ModelValidator.checkValueIsEmail("@action.action"), false)
         assertEquals(ModelValidator.checkValueIsEmail("@"), false)
-        assertEquals(ModelValidator.checkValueIsEmail("asd.asd"), false)
+        assertEquals(ModelValidator.checkValueIsEmail("action.action"), false)
         assertEquals(ModelValidator.checkValueIsEmail("as d@sd"), false)
-        assertEquals(ModelValidator.checkValueIsEmail("asd@asd .asd"), false)
+        assertEquals(ModelValidator.checkValueIsEmail("action@action .action"), false)
         assertEquals(ModelValidator.checkValueIsEmail(""), false)
     }
 
@@ -44,24 +44,24 @@ class Validator {
 
     @Test
     fun checkValueIsEmpty() {
-        assertEquals(ModelValidator.checkValueIsEmpty("asd"), true)
+        assertEquals(ModelValidator.checkValueIsEmpty("action"), true)
         assertEquals(ModelValidator.checkValueIsEmpty(""), false)
         assertEquals(ModelValidator.checkValueIsEmpty(" "), true)
     }
 
     @Test
     fun checkStringLength() {
-        assertEquals(ModelValidator.checkStringLength("asd", 3), true)
-        assertEquals(ModelValidator.checkStringLength("asd", 2), true)
-        assertEquals(ModelValidator.checkStringLength("asd", 4), false)
+        assertEquals(ModelValidator.checkStringLength("action", 3), true)
+        assertEquals(ModelValidator.checkStringLength("action", 2), true)
+        assertEquals(ModelValidator.checkStringLength("action", 4), false)
         assertEquals(ModelValidator.checkStringLength("", 0), true)
     }
 
     @Test
     fun checkStringsEqual() {
-        assertEquals(ModelValidator.checkStringsEqual("asd", "asd"), true)
-        assertEquals(ModelValidator.checkStringsEqual("asd", "as"), false)
-        assertEquals(ModelValidator.checkStringsEqual("sd", "asd"), false)
+        assertEquals(ModelValidator.checkStringsEqual("action", "action"), true)
+        assertEquals(ModelValidator.checkStringsEqual("action", "as"), false)
+        assertEquals(ModelValidator.checkStringsEqual("sd", "action"), false)
         assertEquals(ModelValidator.checkStringsEqual("", ""), true)
     }
 }

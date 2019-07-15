@@ -1,14 +1,9 @@
 package com.fourteenrows.p2pcs.activities.avatar
 
-import com.fourteenrows.p2pcs.activities.avatar.AvatarContractor.*
+import com.fourteenrows.p2pcs.model.database.ModelDatabase
+import com.fourteenrows.p2pcs.model.database.ModelFirebase
 
-class AvatarPresenter(toView: View) : Presenter, CompleteListener {
+class AvatarPresenter(toView: IAvatarView, database: ModelDatabase = ModelFirebase()) : IAvatarPresenter {
 
     private var view = toView
-    private val interactor = AvatarInteractor(this)
-
-    init {
-        view.initView()
-    }
-
 }

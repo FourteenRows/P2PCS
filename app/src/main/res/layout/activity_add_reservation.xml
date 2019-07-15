@@ -8,11 +8,7 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         tools:openDrawer="start"
-        android:background="@color/grey">
-
-    <com.mikepenz.materialize.view.ScrimInsetsRelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:background="@color/slightlyWhite">
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_height="match_parent"
@@ -25,53 +21,118 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/appBar"/>
 
-            <EditText
-                    android:id="@+id/reservationDate"
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/reservationDateLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:hint="@string/reservation_date"
-                    style="@style/textField"
-                    android:focusableInTouchMode="false"
-                    app:layout_constraintTop_toBottomOf="@+id/appBar"
+                    app:boxBackgroundMode="outline"
+                    app:boxBackgroundColor="@color/slightlyWhite"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintBottom_toTopOf="@id/startTimeLayout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginTop="100dp"/>
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-            <TextView
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/reservationDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:focusableInTouchMode="false"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/reservationMillis"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:visibility="invisible"
-                    app:layout_constraintTop_toBottomOf="@+id/reservationDate"
-                    app:layout_constraintStart_toStartOf="@+id/reservationDate"
-                    app:layout_constraintEnd_toEndOf="@+id/reservationDate"/>
+                    app:layout_constraintTop_toBottomOf="@+id/reservationDateLayout"
+                    app:layout_constraintStart_toStartOf="@+id/reservationDateLayout"
+                    app:layout_constraintEnd_toEndOf="@+id/reservationDateLayout"/>
 
-            <EditText
-                    android:id="@+id/reservationZone"
-                    android:hint="@string/reservation_zone"
-                    style="@style/textField"
-                    android:focusableInTouchMode="false"
-                    app:layout_constraintTop_toBottomOf="@+id/reservationDate"
-                    app:layout_constraintStart_toStartOf="@+id/reservationDate"
-                    app:layout_constraintEnd_toEndOf="@+id/reservationDate"/>
 
-            <EditText
-                    android:id="@+id/reservationCar"
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/startTimeLayout"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/start_time"
+                    app:boxBackgroundMode="outline"
+                    app:boxBackgroundColor="@color/slightlyWhite"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintBottom_toTopOf="@id/reservationCarLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/startTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:focusableInTouchMode="false"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/endTimeLayout"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/end_time"
+                    app:boxBackgroundMode="outline"
+                    app:boxBackgroundColor="@color/slightlyWhite"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintBottom_toTopOf="@id/reservationCarLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/endTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:focusableInTouchMode="false"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/reservationCarLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:hint="@string/reservation_vehicle"
-                    style="@style/textField"
-                    android:focusableInTouchMode="false"
-                    app:layout_constraintTop_toBottomOf="@+id/reservationZone"
-                    app:layout_constraintStart_toStartOf="@+id/reservationZone"
-                    app:layout_constraintEnd_toEndOf="@+id/reservationZone"/>
+                    app:boxBackgroundMode="outline"
+                    app:boxBackgroundColor="@color/slightlyWhite"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-            <Button
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/reservationCar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:focusableInTouchMode="false"
+                        app:layout_constraintTop_toBottomOf="@+id/reservationZone"
+                        app:layout_constraintStart_toStartOf="@+id/reservationZone"
+                        app:layout_constraintEnd_toEndOf="@+id/reservationZone"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/reservationConfirm"
                     android:text="@string/reservation_confirm"
-                    style="@style/button"
-                    android:layout_marginTop="84dp"
-                    app:layout_constraintTop_toBottomOf="@+id/reservationCar"
-                    app:layout_constraintStart_toStartOf="@+id/reservationCar"
-                    app:layout_constraintEnd_toEndOf="@+id/reservationCar"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/reservationCarLayout"
+                    app:layout_constraintStart_toStartOf="@id/reservationCarLayout"
+                    app:layout_constraintEnd_toEndOf="@id/reservationCarLayout"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    style="@style/Widget.MaterialComponents.Button"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </com.mikepenz.materialize.view.ScrimInsetsRelativeLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

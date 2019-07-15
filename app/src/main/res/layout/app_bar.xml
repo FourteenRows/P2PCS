@@ -1,64 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.appcompat.widget.Toolbar
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".activities.reservation.ReservationView">
+        android:id="@+id/toolbar"
+        android:background="@drawable/curve_toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.0"
+        android:layout_height="wrap_content" android:layout_width="match_parent" android:elevation="100dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
+        <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp" app:srcCompat="@drawable/gaiacoin" android:id="@+id/imageView6"
+                app:layout_anchorGravity="start|center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/gaiaCoinValue"/>
 
-        <com.google.android.material.appbar.AppBarLayout
-                android:layout_width="match_parent"
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/gaiaCoinValue"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:theme="@style/AppTheme.AppBarOverlay"
-                app:layout_constraintTop_toTopOf="parent">
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView6"
+                android:textAlignment="gravity"/>
+        <ImageView
+                android:layout_width="30dp"
+                android:layout_height="25dp" app:srcCompat="@drawable/exp" android:id="@+id/imageView7"
+                app:layout_constraintEnd_toStartOf="@+id/weekPointValue"
+                app:layout_constraintTop_toTopOf="@+id/weekPointValue"/>
 
-            <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:popupTheme="@style/AppTheme.PopupOverlay">
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/weekPointValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/gaiaCoinValue"
+                android:layout_marginStart="75dp"/>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/gaiaCoinValue"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="18sp"
-                            android:textColor="@android:color/white"
-                            android:textStyle="bold"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            android:drawableStart="@drawable/icon_coin"
-                            android:gravity="center_vertical"
-                            android:textAlignment="gravity"/>
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/weekPointValue"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="18sp"
-                            android:textColor="@android:color/white"
-                            android:textStyle="bold"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/gaiaCoinValue"
-                            android:drawableStart="@drawable/icon_weeklypoints"
-                            android:gravity="center_vertical"
-                            android:layout_marginStart="75dp"/>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.appcompat.widget.Toolbar>
-
-        </com.google.android.material.appbar.AppBarLayout>
-    </LinearLayout>
-
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.appcompat.widget.Toolbar>

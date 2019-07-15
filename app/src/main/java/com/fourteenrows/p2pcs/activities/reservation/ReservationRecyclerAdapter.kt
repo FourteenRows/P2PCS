@@ -3,10 +3,12 @@ package com.fourteenrows.p2pcs.activities.reservation
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.fourteenrows.p2pcs.R
-import com.fourteenrows.p2pcs.model.*
+import com.fourteenrows.p2pcs.model.utility.ImageHelper
+import com.fourteenrows.p2pcs.objects.reservations.*
 import kotlinx.android.synthetic.main.recycler_reservation_active_reservation_item.view.*
 import kotlinx.android.synthetic.main.recycler_reservation_active_reservation_item.view.endDate
 import kotlinx.android.synthetic.main.recycler_reservation_active_reservation_item.view.hours
@@ -15,8 +17,8 @@ import kotlinx.android.synthetic.main.recycler_reservation_past_reservation_item
 import kotlinx.android.synthetic.main.recycler_reservation_title_item.view.*
 
 class ReservationRecyclerAdapter(
-    private val items: ArrayList<CardObject>,
-    private val listener: ReservationContractor.CompleteListener
+    private val items: ArrayList<ReservationCardObject>,
+    private val listener: IReservationListener
 ) :
     RecyclerView.Adapter<ReservationRecyclerAdapter.BaseViewHolder<*>>() {
     companion object {
@@ -27,7 +29,6 @@ class ReservationRecyclerAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
-        val context = parent.context
         return when (viewType) {
             TYPE_MESSAGE_ERROR -> {
                 val view = LayoutInflater.from(parent.context)
@@ -35,7 +36,7 @@ class ReservationRecyclerAdapter(
                 MessageErrorViewHolder(view)
             }
             TYPE_TITLE -> {
-                val view = LayoutInflater.from(context)
+                val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.recycler_reservation_title_item, parent, false)
                 TitleViewHolder(view)
             }
@@ -56,9 +57,9 @@ class ReservationRecyclerAdapter(
     override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
         val element = items[position]
         when (holder) {
-            is PastReservationViewHolder -> holder.bind(element as PastReservationObject)
-            is ActiveReservationViewHolder -> holder.bind(element as ActiveReservationObject)
-            is MessageErrorViewHolder -> holder.bind(element as MessageErrorObject)
+            is PastReservationViewHolder -> holder.bind(element as PastReservationReservationCardObject)
+            is ActiveReservationViewHolder -> holder.bind(element as ActiveReservationReservationCardObject)
+            is MessageErrorViewHolder -> holder.bind(element as MessageErrorObjectReservation)
             is TitleViewHolder -> holder.bind(element)
             else -> throw IllegalArgumentException()
         }
@@ -66,9 +67,9 @@ class ReservationRecyclerAdapter(
 
     override fun getItemViewType(position: Int): Int {
         return when (items[position]) {
-            is PastReservationObject -> TYPE_PAST_RESERVATION
-            is ActiveReservationObject -> TYPE_ACTIVE_RESERVATION
-            is MessageErrorObject -> TYPE_MESSAGE_ERROR
+            is PastReservationReservationCardObject -> TYPE_PAST_RESERVATION
+            is ActiveReservationReservationCardObject -> TYPE_ACTIVE_RESERVATION
+            is MessageErrorObjectReservation -> TYPE_MESSAGE_ERROR
             else -> TYPE_TITLE
         }
     }
@@ -79,10 +80,10 @@ class ReservationRecyclerAdapter(
         abstract fun bind(item: T)
     }
 
-    class TitleViewHolder(val view: View) : BaseViewHolder<CardObject>(view) {
+    class TitleViewHolder(val view: View) : BaseViewHolder<ReservationCardObject>(view) {
         private val titleTextView = view.title
 
-        override fun bind(item: CardObject) {
+        override fun bind(item: ReservationCardObject) {
             if (item.cardType == ReservationCardType.TITLE_ACTIVE_PRENOTATION) {
                 titleTextView.setText(R.string.future_reservations)
             } else {
@@ -91,52 +92,63 @@ class ReservationRecyclerAdapter(
         }
     }
 
-    class MessageErrorViewHolder(val view: View) : BaseViewHolder<CardObject>(view) {
+    class MessageErrorViewHolder(val view: View) : BaseViewHolder<ReservationCardObject>(view) {
         private val titleTextView = view.title
 
-        override fun bind(item: CardObject) {
+        override fun bind(item: ReservationCardObject) {
             titleTextView.setText(R.string.missing_reservations)
         }
     }
 
-    class ActiveReservationViewHolder(val view: View, val listener: ReservationContractor.CompleteListener) :
-        BaseViewHolder<ActiveReservationObject>(view),
+    class ActiveReservationViewHolder(val view: View, val listener: IReservationListener) :
+        BaseViewHolder<ActiveReservationReservationCardObject>(view),
         View.OnClickListener {
+        val viewForeground: RelativeLayout = view.findViewById(R.id.foreground)
+
         private val vehicleModel: TextView = view.vehicleModel
         private val endDate: TextView = view.endDate
         private val hours: TextView = view.hours
-        private val rid = view.rida
+        val rid = view.rida!!
+        private val image = view.imageCarActive
+        val pending = view.pending_reservation
 
-        override fun bind(item: ActiveReservationObject) {
-            vehicleModel.text = item.vehicleModel
-            endDate.text = item.endDate
-            hours.text = item.hours
+        override fun bind(item: ActiveReservationReservationCardObject) {
+            vehicleModel.text = view.resources.getString(R.string.vehicle, item.vehicleModel)
+            endDate.text = view.resources.getString(R.string.date, item.endDate)
+            hours.text = view.resources.getString(R.string.time_zone, item.hours)
             rid.text = item.rid
+            ImageHelper().setCarImage(image, item.carId)
 
-            view.deleteReservation.setOnClickListener {
-                listener.confirmDeletion(rid.text.toString())
+            if (item.rid == "") {
+                pending.visibility = View.VISIBLE
+            } else {
+                pending.visibility = View.GONE
             }
         }
 
-        override fun onClick(view: View) {
-        }
+        override fun onClick(view: View) {}
     }
 
-    class PastReservationViewHolder(val view: View, val listener: ReservationContractor.CompleteListener) :
-        BaseViewHolder<PastReservationObject>(view),
+    class PastReservationViewHolder(val view: View, val listener: IReservationListener) :
+        BaseViewHolder<PastReservationReservationCardObject>(view),
         View.OnClickListener {
+        val viewForeground: RelativeLayout = view.findViewById(R.id.foreground)
+
         private val vehicleModel: TextView = view.vehicleModel
         private val endDate: TextView = view.endDate
         private val hours: TextView = view.hours
         private val totalCost = view.totalCost
-        private val rid = view.ridp
+        val rid = view.ridp!!
+        private val image = view.imageCarPast
 
-        override fun bind(item: PastReservationObject) {
-            vehicleModel.text = item.vehicleModel
-            endDate.text = item.endDate
-            hours.text = item.hours
-            totalCost.text = item.totalCost.toString()
+        override fun bind(item: PastReservationReservationCardObject) {
+            vehicleModel.text = view.resources.getString(R.string.vehicle, item.vehicleModel)
+            endDate.text = view.resources.getString(R.string.date, item.endDate)
+            hours.text = view.resources.getString(R.string.time_zone, item.hours)
+            totalCost.text = view.resources.getString(R.string.total_cost, item.totalCost.toString())
             rid.text = item.rid
+
+            ImageHelper().setCarImage(image, item.carId)
         }
 
         override fun onClick(view: View) {
