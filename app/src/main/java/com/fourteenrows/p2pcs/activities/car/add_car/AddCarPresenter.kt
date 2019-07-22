@@ -90,7 +90,7 @@ class AddCarPresenter(toView: AddCarActivity, private val database: ModelDatabas
             "https://maps.googleapis.com/maps/api/geocode/json?address=${location.replace(
                 " ",
                 "+"
-            )}&language=it&key=AIzaSyCOC1mSTaQw8jLdmN8VD5nP_s2Bn2jqi6w"
+            )}&language=it&key=AIzaSyC9ljVW0hvLLCF5ToiGv47WaKAjGBzLXos"
         val jsonOR = JsonObjectRequest(
             Request.Method.GET, url, null,
             Response.Listener {

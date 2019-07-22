@@ -27,7 +27,7 @@ class LocationCarPresenter(toView: LocationCarActivity, private val database: Mo
         val location = "45.411154, 11.887554"
         val array = ArrayList<CarLocation>()
         val url =
-            "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$point&location=$location&radius=1000&language=it&key=AIzaSyCOC1mSTaQw8jLdmN8VD5nP_s2Bn2jqi6w"
+            "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$point&location=$location&radius=1000&language=it&key=AIzaSyC9ljVW0hvLLCF5ToiGv47WaKAjGBzLXos"
         val jsonObjectRequest = JsonObjectRequest(Request.Method.GET, url, null,
             Response.Listener {
                 val status = it.getString("status")

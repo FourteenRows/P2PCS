@@ -15,6 +15,7 @@ import com.fourteenrows.p2pcs.activities.trip.add_trip.user_trip.UserAddTripActi
 import com.fourteenrows.p2pcs.model.database.ModelDatabase
 import com.fourteenrows.p2pcs.model.database.ModelFirebase
 import com.fourteenrows.p2pcs.model.database.car.Car
+import com.fourteenrows.p2pcs.model.drawer.DrawerSingleton
 import com.fourteenrows.p2pcs.model.utility.ModelValidator
 import com.fourteenrows.p2pcs.model.volley.VolleySingleton
 import com.fourteenrows.p2pcs.objects.boosters.ActiveBooster
@@ -130,7 +131,7 @@ class AddTripPresenter(private val view: AddTripActivity, private val database: 
         trip.end = view.tripEnd.text.toString()
 
         val url =
-            "https://maps.googleapis.com/maps/api/directions/json?origin=${trip.start}&destination=${trip.end}&mode=driving&sensor=false&language=it&key=AIzaSyCOC1mSTaQw8jLdmN8VD5nP_s2Bn2jqi6w"
+            "https://maps.googleapis.com/maps/api/directions/json?origin=${trip.start}&destination=${trip.end}&mode=driving&sensor=false&language=it&key=AIzaSyC9ljVW0hvLLCF5ToiGv47WaKAjGBzLXos"
         val jsonObjectRequest = JsonObjectRequest(Request.Method.GET, url, null,
             Response.Listener {
                 val status = it.getString("status")
@@ -206,8 +207,7 @@ class AddTripPresenter(private val view: AddTripActivity, private val database: 
                 val questDirector = QuestDirector(view)
                 questDirector.addTripProgress(distanceValue, participants, durationValue)
                 addTripData(start, end, distance, duration, participants.size.toLong(), trip.cid)
-                //TODO("Update leaderboard")
-                //TODO("Update badges")
+                DrawerSingleton.getDrawer(view)
             }
     }
 
@@ -215,9 +215,8 @@ class AddTripPresenter(private val view: AddTripActivity, private val database: 
         database.getUserDocument()
             .addOnSuccessListener {
                 val gaiaCoins = it.data!!["gaia_coins"] as Long + pointsGainer.gaiaCoins
-                var exp = it.data!!["exp"] as Long
-                val weekPoints = it.data!!["week_points"] as Long + exp
-                exp += pointsGainer.exp
+                val exp = it.data!!["exp"] as Long + pointsGainer.exp
+                val weekPoints = it.data!!["week_points"] as Long + pointsGainer.exp
                 database.addUserPoints(exp, gaiaCoins, weekPoints)
             }
     }

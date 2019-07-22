@@ -66,13 +66,9 @@ class RequestOnOwnCarListener(private val context: Context) {
         acceptIntent.putExtra("uid", owner)
         acceptIntent.putExtra("startDate", startDate.time)
         acceptIntent.putExtra("endDate", endDate.time)
-        val pendingAcceptIntent =
-            PendingIntent.getBroadcast(context, 0, acceptIntent, 0)
 
         val rejectedIntent = Intent(appContext, NotificationRejectedReceiver::class.java)
         rejectedIntent.putExtra("cid", cid)
-        val pendingRejectIntent =
-            PendingIntent.getBroadcast(context, 0, rejectedIntent, 0)
 
         val bigText = NotificationCompat.BigTextStyle()
         bigText.setSummaryText("Prenotazione")
@@ -87,8 +83,16 @@ class RequestOnOwnCarListener(private val context: Context) {
             )
             .setSmallIcon(R.mipmap.ic_launcher_round)
             .setPriority(Notification.PRIORITY_HIGH)
-            .addAction(R.drawable.background_red, "Accetta", pendingAcceptIntent)
-            .addAction(R.drawable.background_blue, "Rifiuta", pendingAcceptIntent)
+            .addAction(
+                0,
+                "Accetta",
+                PendingIntent.getBroadcast(appContext, 0, acceptIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+            )
+            .addAction(
+                0,
+                "Rifiuta",
+                PendingIntent.getBroadcast(appContext, 1, rejectedIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+            )
             .setVibrate(longArrayOf(500, 0, 500, 500))
             .setOngoing(true)
 
